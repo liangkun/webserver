@@ -36,6 +36,6 @@ object Main {
     implicit val timeout = Timeout(5.seconds)
 
     // Start a new http server with our server actor as handler.
-    IO(Http) ? Http.Bind(service, interface = "localhost", port = 8080)
+    IO(Http) ? Http.Bind(service, interface = "localhost")
   }
 }
