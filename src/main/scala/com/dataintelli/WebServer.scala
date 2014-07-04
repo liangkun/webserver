@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Data Intellic Inc. All Rights Reserved.
+ * Copyright (c) 2014 Data Intelli Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,3 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.dataintelli
+
+import akka.actor.Actor
+import spray.routing._
+import spray.http._
+import MediaTypes._
+
+// WebServer defines the service behavior independently from the server actor.
+trait WebServer extends HttpService {
+  def htdocs: String = "/htdocs"
+
+  val route = {
+    path("") {
+      get {
+        respondWithMediaType(`text/html`) {
+          getFromFile(s"$htdocs/index.html")
+        }
+      }
+    }
+  }
+}
+
+class WebServerActor(override val htdocs: String) extends Actor with WebServer {
+  // @see HttpService.actorRefFactory
+  override def actorRefFactory = context
+
+  // @see HttpService.receive
+  override def receive = runRoute(route)
+}

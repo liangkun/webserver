@@ -2,7 +2,7 @@ organization := "com.dataintelli"
 
 version := "1.0"
 
-scalaVersion := "2.11.1"
+scalaVersion := "2.10.3"
 
 libraryDependencies ++= {
   val akkaVersion = "2.3.2"
@@ -10,11 +10,10 @@ libraryDependencies ++= {
   Seq(
     "io.spray"          %  "spray-can"     % sprayVersion,
     "io.spray"          %  "spray-routing" % sprayVersion,
-    "io.spray"          %  "spray-testkit" % sprayVersion % test,
+    "io.spray"          %  "spray-testkit" % sprayVersion,
     "com.typesafe.akka" %% "akka-actor"    % akkaVersion,
-    "com.typesafe.akka" %% "akka-testkit"  % akkaVersion  % test,
-    "org.specs2"        %% "specs2-core"   % "2.3.7"      % test,
+    "com.typesafe.akka" %% "akka-testkit"  % akkaVersion,
+    "org.specs2"        %% "specs2-core"   % "2.3.7"
   )
 }
 
-Revolver.settings
