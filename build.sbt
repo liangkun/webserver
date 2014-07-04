@@ -17,3 +17,6 @@ libraryDependencies ++= {
   )
 }
 
+Revolver.settings
+
+assemblySettings

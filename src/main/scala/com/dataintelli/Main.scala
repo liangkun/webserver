@@ -29,13 +29,13 @@ object Main {
     implicit val actorSystem = ActorSystem("WebServer")
 
     // Create and start our server actor.
-    val props = Props(classOf[WebServerActor], args(0))
+    val props = Props(classOf[WebServerActor], args(1))
     val service = actorSystem.actorOf(props, "service")
 
     // Server timeout
     implicit val timeout = Timeout(5.seconds)
 
     // Start a new http server with our server actor as handler.
-    IO(Http) ? Http.Bind(service, interface = "localhost")
+    IO(Http) ? Http.Bind(service, interface = args(0))
   }
 }
